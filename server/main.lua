@@ -65,7 +65,6 @@ QBCore.Commands.Add('putinbag', 'Put marked cash in a bag', {}, false, function(
     local Player = QBCore.Functions.GetPlayer(src)
     local markedcash = Player.Functions.GetItemByName('markedcash')
     local emptybag = Player.Functions.GetItemByName('emptybag')
-    local markedbag = Player.Functions.GetItemByName('markedbag')
     local amount = 0
 
     if Player.PlayerData.items ~= nil then 
@@ -76,6 +75,7 @@ QBCore.Commands.Add('putinbag', 'Put marked cash in a bag', {}, false, function(
             end
             if markedcash ~= nil then
                 if Player.PlayerData.items[k].name == 'markedcash' then
+                    Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, false)
                     amount = amount + Player.PlayerData.items[k].amount
                 end
             else
@@ -88,7 +88,6 @@ QBCore.Commands.Add('putinbag', 'Put marked cash in a bag', {}, false, function(
         local info = {
             worth = amount * 25
         }
-        Player.Functions.RemoveItem('markedcash', amount, false, info)
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['markedcash'], "remove", amount)
         Player.Functions.RemoveItem('emptybag', 1, false)
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['emptybag'], "remove")

@@ -13,7 +13,7 @@ Text3D = function(x, y, z, text)
     SetDrawOrigin(x,y,z, 0)
     DrawText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    DrawRect(0.0, 0.0+0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -22,7 +22,7 @@ Citizen.CreateThread(function()
         local inRange = false
         local PlayerPed = PlayerPedId()
         local PlayerPos = GetEntityCoords(PlayerPed)
-        local distance = #(PlayerPos -vector3(1135.95, -989.11, 46.11))
+        local distance = #(PlayerPos - vector3(1135.95, -989.11, 46.11))
         
         if distance < 8 then
             inRange = true
@@ -42,7 +42,7 @@ end)
 
 RegisterNetEvent('qb-moneywash:client:WashProggress')
 AddEventHandler('qb-moneywash:client:WashProggress', function(source)
-    QBCore.Functions.Progressbar("wash_money", "You are washing marked money...", math.random(10000,12000), false, true, {
+    QBCore.Functions.Progressbar("wash_money", "You are washing marked money...", math.random(10000,20000), false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
